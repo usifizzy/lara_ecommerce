@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        //     protected $fillable    = ['order_id', 'product_name', 'price', 'quantity', 'amount', 'product_id'];
+        Schema::create('order_detail', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('product_name', 128);
+            $table->double('price', 38, 2)->default(0);
+            $table->double('quantity', 38, 2)->default(0);
+            $table->double('amount', 38, 2)->default(0);
+            $table->unsignedBigInteger('product_id', 64);
+            
+            $table->unsignedBigInteger('order_id');
+            $table->foreign('order_id')->references('id')->on('orders');
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('order_detail');
+    }
+};

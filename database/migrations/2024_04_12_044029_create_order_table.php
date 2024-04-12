@@ -11,7 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //     protected $fillable    = ['order_no', 'amount', 'status', 'customer_id'];
         Schema::create('order', function (Blueprint $table) {
             $table->id();
 

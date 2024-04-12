@@ -105,9 +105,9 @@
     <div class="sidebar">
         <ul>
             <li><a href="/admin">Dashboard</a></li>
-            <li>Products</li>
+            <li><a href="/admin/products">Products</a></li>
             <li><a href="/admin/orders">Orders</a></li>
-            <li><a href="/admin/customers">Customers</a></li>
+            <li>Customers</li>
             <li><a href="/auth/signout">Sign Out</a></li>
             <br>
             <br>
@@ -117,36 +117,30 @@
 
     <div class="content">
         
-    <h2>Product List</h2>
-    <br>
-    <a href="/products/add"><button>Add New Product</button></a>
+    <h2>Customer List</h2>
     <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>Description</th>
-                <th>Image</th>
-                <th> </th>
+                <th>Email</th>
+                <th>Phone</th>
+                <!-- <th>Status</th> -->
+                <!-- <th> </th> -->
             </tr>
         </thead>
         <tbody>
-        @foreach ($products as $single_products) 
+        @foreach ($customers as $single_customer) 
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$single_products->name}}</td>
-                <td>{{$single_products->price}}</td>
-                <td>{{$single_products->category}}</td>
-                <td>{{$single_products->description}}</td>
-                <td><img src="{{$single_products->image }}" alt="{{$single_products->name}}" class="product-image" style="width:250px;height:250px"></td>
-                <td> </td>
+                <td>{{$single_customer->name}}/td>
+                <td>{{$single_customer->email}}</td>
+                <td>{{$single_customer->phone}}</td>
             </tr>
-            @endforeach
+        @endforeach    
         </tbody>
     </table>
-    <div class="pagination">pagination </div>
+    <div class="pagination"> $pagination </div>
     </div>
 </body>
 </html>

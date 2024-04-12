@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
             'role' => 'Admin',
             'address' => fake()->streetAddress(),
+            'phone' => fake()->phone(),
         ]);
         User::factory(2)->create();
         Product::factory(20)->create();

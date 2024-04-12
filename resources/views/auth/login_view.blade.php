@@ -56,6 +56,7 @@
     }
     ?>
         <form action="login" method="post">
+            @csrf
             <label for="email">Username</label>
             <input type="text" id="email" name="email" required>
             <label for="password">Password</label>

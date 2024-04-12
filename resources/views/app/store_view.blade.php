@@ -201,8 +201,13 @@
             <button id="menuToggle">&#9776;</button>
         </li>
         <li class="menu-item hidden"><a href="/store">Home</a></li>
-        @if ($hasCart) <li class="menu-item hidden"><a href="/cart">Cart</a></li> @else  @endif
-        @if ($isUserLoggedIn) <li class="menu-item hidden"><a href="/auth/signout">Sign Out</a></li> @else <li class="menu-item hidden"><a href="/auth/login">Sign In</a></li> @endif
+        @session('cart') 
+        @if(isset($value))
+        <li class="menu-item hidden"><a href="/cart">Cart</a></li>
+        @endif
+        @endsession
+        @auth<li class="menu-item hidden"><a href="/auth/signout">Sign Out</a></li> @endauth 
+        @guest <li class="menu-item hidden"><a href="/auth/login">Sign In</a></li> @endguest
     </ul>
 </div>
 

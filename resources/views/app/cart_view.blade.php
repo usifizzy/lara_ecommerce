@@ -162,7 +162,8 @@
         </li>
         <li class="menu-item hidden"><a href="/store">Home</a></li>
         <li class="menu-item hidden"><a href="/cart">Cart</a></li>
-        @if ($isUserLoggedIn) <li class="menu-item hidden"><a href="/auth/signout">Sign Out</a></li> @else <li class="menu-item hidden"><a href="/auth/login">Sign In</a></li> @endif
+        @auth<li class="menu-item hidden"><a href="/auth/signout">Sign Out</a></li> @endauth 
+        @guest <li class="menu-item hidden"><a href="/auth/login">Sign In</a></li> @endguest
     </ul>
 </div>
 
@@ -208,7 +209,8 @@
             </tr>
         </tbody>
     </table>
-    <a href="@if ($isUserLoggedIn) cart/checkout @else auth/login @endif"><button class="checkout-button">Checkout</button></a>
+    <a href="@auth cart/checkout @endauth
+     @guest auth/login @endguest"><button class="checkout-button">Checkout</button></a>
 
 
                         </div>

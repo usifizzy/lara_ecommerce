@@ -5,15 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Product;
+use Illuminate\Http\RedirectResponse;
 
 class CartController extends Controller
 {
     public function show_cart(): View
     {
         return view('app.cart_view', [
-            'cart_contents' => session('cart', []),
-            'hasCart' => false,
-            'isUserLoggedIn' => false
+            'cart_contents' => session('cart', [])
         ]);
     }
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Order;
+use App\Models\OrderDetails;
 use Illuminate\View\View;
 
 class AdminController extends Controller
@@ -32,16 +34,16 @@ class AdminController extends Controller
     public function orders(): View
     {
         return view('admin.orders_view', [
-            'products' => Product::all(),
+            'all_orders' => Order::all(),
             'hasCart' => false,
             'isUserLoggedIn' => false
         ]);
     }
 
-    public function order_details(): View
+    public function order_details($order_id): View
     {
         return view('admin.order_details_view', [
-            'products' => Product::all(),
+            'orders_products_list' => OrderDetail::where('order_id', $order_id)->get(),
             'hasCart' => false,
             'isUserLoggedIn' => false
         ]);

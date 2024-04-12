@@ -1,3 +1,6 @@
+<div>
+    <!-- Because you are alive, everything is possible. - Thich Nhat Hanh -->
+</div>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,8 +109,8 @@
         <ul>
             <li><a href="/admin">Dashboard</a></li>
             <li><a href="/admin/products">Products</a></li>
-            <li><a href="/admin/orders">Orders</a></li>
-            <li>Customers</li>
+            <li>Orders</li>
+            <li><a href="/admin/customers">Customers</a></li>
             <li><a href="/auth/signout">Sign Out</a></li>
             <br>
             <br>
@@ -117,30 +120,36 @@
 
     <div class="content">
         
-    <h2>Customer List</h2>
+    <h2>Order List</h2>
+    
     <table>
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <!-- <th>Status</th> -->
-                <!-- <th> </th> -->
+                <th>Order No</th>
+                <th>Amount(£)</th>
+                <th>Customer Email</th>
+                <th>Customer Name</th>
+                <th>Status</th>
+                <th> </th>
             </tr>
         </thead>
         <tbody>
-        @foreach ($customers as $single_customer) 
+        @foreach ($all_orders as $single_products) 
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$single_customer->name}}</td>
-                <td>{{$single_customer->email}}</td>
-                <td>{{$single_customer->phone}}</td>
+                <td>{{$single_products->order_no}}</td>
+                <td>{{$single_products->amount}}</td>
+                <td>{{$single_products->email}}</td>
+                <td>{{$single_products->name}}</td>
+
+                <td>{{$single_products->status}}</td>
+                <td><a href="order/details/{{$single_products->id}}"><span>Details</span></a> </td>
             </tr>
-        @endforeach    
+            @endforeach
         </tbody>
     </table>
-    <div class="pagination"> $pagination </div>
+    <div class="pagination"> $pagination</div>
     </div>
 </body>
 </html>

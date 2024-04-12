@@ -67,38 +67,6 @@
         tr:hover {
             background-color: #ddd;
         }
-
-
-
-        /* Styles for pagination container */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        /* Styles for pagination links */
-        .pagination a {
-            padding: 8px 16px;
-            margin: 0 4px;
-            color: #007bff; /* Link color */
-            text-decoration: none;
-            border: 1px solid #007bff; /* Border color */
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-
-        /* Hover effect for pagination links */
-        .pagination a:hover {
-            background-color: #007bff;
-            color: #fff; /* Text color on hover */
-        }
-
-        /* Active page style */
-        .pagination .active {
-            background-color: #007bff;
-            color: #fff;
-        }
     </style>
 </head>
 <body>
@@ -106,8 +74,8 @@
         <ul>
             <li><a href="/admin">Dashboard</a></li>
             <li><a href="/admin/products">Products</a></li>
-            <li><a href="/admin/orders">Orders</a></li>
-            <li>Customers</li>
+            <li>Orders</li>
+            <li><a href="/admin/customers">Customers</a></li>
             <li><a href="/auth/signout">Sign Out</a></li>
             <br>
             <br>
@@ -117,30 +85,42 @@
 
     <div class="content">
         
-    <h2>Customer List</h2>
+    <h2>Order: {{$order}}</h2>
     <table>
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <!-- <th>Status</th> -->
-                <!-- <th> </th> -->
+                <th>Product</th>
+                <th>Price(NGN)</th>
+                <th>Quantity</th>
+                <th>Amount(NGN)</th>
             </tr>
         </thead>
         <tbody>
-        @foreach ($customers as $single_customer) 
+        <?php 
+        $count = 1;
+        $total = 0;
+        @foreach ($get_all_orders as $single_products) 
+            @php($total += ($single_products->price * $single_products->quantity))
+            ?>
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$single_customer->name}}</td>
-                <td>{{$single_customer->email}}</td>
-                <td>{{$single_customer->phone}}</td>
+                <td>{{$single_products->product_name}}</td>
+                <td>{{$single_products->price}}</td>
+                <td>{{$single_products->quantity}}</td>
+                <td>{{$single_products->price * $single_products->quantity}}</td>
             </tr>
-        @endforeach    
+            @endforeach
+
+            <tr>
+                <th> </th>
+                <th> </th>
+                <th> </th>
+                <th> </th>
+                <th>£ {{$total}}</th>
+            </tr>
         </tbody>
     </table>
-    <div class="pagination"> $pagination </div>
     </div>
 </body>
 </html>

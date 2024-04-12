@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //     protected $fillable    = ['order_id', 'product_name', 'price', 'quantity', 'amount', 'product_id'];
-        Schema::create('order_detail', function (Blueprint $table) {
+        Schema::create('order_details', function (Blueprint $table) {
             $table->id();
 
             $table->string('product_name', 128);
             $table->double('price', 38, 2)->default(0);
             $table->double('quantity', 38, 2)->default(0);
             $table->double('amount', 38, 2)->default(0);
-            $table->unsignedBigInteger('product_id', 64);
+
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products');
             
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders');
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_detail');
+        Schema::dropIfExists('order_details');
     }
 };

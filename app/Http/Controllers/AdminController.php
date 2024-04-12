@@ -34,7 +34,7 @@ class AdminController extends Controller
     public function orders(): View
     {
         return view('admin.orders_view', [
-            'all_orders' => Order::all(),
+            'all_orders' => Order::all()->customer,
             'hasCart' => false,
             'isUserLoggedIn' => false
         ]);

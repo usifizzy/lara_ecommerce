@@ -163,18 +163,12 @@
         <li class="menu-item hidden"><a href="/store">Home</a></li>
         <li class="menu-item hidden"><a href="/cart">Cart</a></li>
         @if ($isUserLoggedIn) <li class="menu-item hidden"><a href="/auth/signout">Sign Out</a></li> @else <li class="menu-item hidden"><a href="/auth/login">Sign In</a></li> @endif
-        <!-- <li class="menu-item hidden"><a href="https://forum.codeigniter.com/" target="_blank">Community</a></li>
-        <li class="menu-item hidden"><a
-                href="https://codeigniter.com/contribute" target="_blank">Contribute</a>
-        </li> -->
     </ul>
 </div>
 
 </header>
     <h1>Shopping Cart</h1>
 
-
-    <?php //var_dump($cart_contents}}
     <table>
         <thead>
             <tr>
@@ -187,13 +181,16 @@
         </thead>
         <tbody>
 
-            <?php
+                    @php
                         $i = 0;
                         $total = 0;
-                        foreach ($cart_contents as $cart_items) {
+                    @endphp
+
+                    @foreach ($cart_contents as $cart_items)
+                    @php
                             $i++;
-                            $total += ($cart_items['price'] * $cart_items['quantity'])
-                            ?>
+                            $total += ($cart_items['price'] * $cart_items['quantity']);
+                    @endphp
             <tr>
                 <td>{{$cart_items['name']}}</td>
                 <td>£ {{$cart_items['price']}}</td>
@@ -201,8 +198,7 @@
                 <td>£ {{$cart_items['price'] * $cart_items['quantity']}}</td>
                 <td><a href="store/cart/remove/{{$cart_items['product_id']}}"><button>Remove</button></a></td>
             </tr>
-            
-            <?php } ?>
+            @endforeach
             <tr>
                 <th> </th>
                 <th> </th>

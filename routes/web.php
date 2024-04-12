@@ -27,3 +27,14 @@ Route::get('/admin/products', [AdminController::class, 'products']);
 Route::get('/admin/customers', [AdminController::class, 'customers']);
 Route::get('/admin/orders', [AdminController::class, 'orders']);
 Route::get('/admin/order/details', [AdminController::class, 'order_details']);
+
+
+Route::get('/auth/login', function () {
+    return view('auth.login_view');
+});
+Route::get('/auth/register', function () {
+    return view('auth.register_view');
+});
+Route::post('/auth/login', [AuthController::class, 'authenticate']);
+Route::post('/auth/register', [AuthController::class, 'register']);
+Route::post('/auth/signout', [AuthController::class, 'logout']);

@@ -17,7 +17,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function add_item(Request $request)
+    public function add_item(Request $request): RedirectResponse
     {
         $productId = $request->input('product_id');
         $quantity = $request->input('quantity', 1);
@@ -52,7 +52,7 @@ class CartController extends Controller
 
     }
 
-    public function update_item(Request $request)
+    public function update_item(Request $request): RedirectResponse
     {
         $productId = $request->input('product_id');
         $quantity = $request->input('quantity');
@@ -67,7 +67,7 @@ class CartController extends Controller
         return redirect()->action([CartController::class, 'show_cart']);
     }
 
-    public function remove_item($productId)
+    public function remove_item($productId): RedirectResponse
     {
         $cart = session('cart', []);
 
@@ -79,7 +79,7 @@ class CartController extends Controller
         return redirect()->action([CartController::class, 'show_cart']);
     }
 
-    public function place_order() : Returntype {
+    public function place_order() : View {
         
     }
 }

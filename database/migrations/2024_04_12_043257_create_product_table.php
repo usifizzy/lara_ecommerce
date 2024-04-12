@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name', 128);
             $table->double('price', 38, 2)->default(0);
             $table->string('category', 64);
-            $table->string('description', 5000)->nullable();
+            $table->text('description', 5000)->nullable();
             // $table->enum('fee_bearer', ['client', 'customer'])->default('client');
             $table->string('image', 128);
 

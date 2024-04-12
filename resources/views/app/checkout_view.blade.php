@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details</title>
+    <title>Shopping Cart</title>
     <style>
         /* Basic styling */
 
@@ -107,7 +107,6 @@
             font-weight: 300;
         }
 
-        
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -119,53 +118,40 @@
             padding: 20px;
         }
 
+        table {
+            width: 100%;
+            border-collapse: collapse;
 
-        .product-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px;
         }
-        .product-image {
-            max-width: 50%;
-            padding-right: 20px;
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
         }
-        .product-content {
-            max-width: 50%;
+        th {
+            background-color: #f2f2f2;
         }
-        .product-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
+        tr:hover {
+            background-color: #f5f5f5;
         }
-        .product-description {
-            margin-bottom: 10px;
-        }
-        .product-price {
-            color: #007bff;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .product-details {
-            border: 1px solid #ccc;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        .product-details img {
-            max-width: 100%;
-            max-height: 100%;
-            margin-right: 20px;
-        }
-        button {
+        .checkout-button {
             background-color: #4CAF50;
             color: white;
             padding: 10px 20px;
             border: none;
             cursor: pointer;
         }
-        button:hover {
+        .checkout-button:hover {
             background-color: #45a049;
+        }
+        .checkout-form {
+            margin-top: 20px;
+        }
+        .checkout-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
         }
     </style>
 </head>
@@ -185,41 +171,68 @@
             <button id="menuToggle">&#9776;</button>
         </li>
         <li class="menu-item hidden"><a href="/store">Home</a></li>
-        @session('cart') 
-        @if(isset($value))
         <li class="menu-item hidden"><a href="/cart">Cart</a></li>
-        @endif
-        @endsession
+        
         @auth<li class="menu-item hidden"><a href="/auth/signout">Sign Out</a></li> @endauth 
         @guest <li class="menu-item hidden"><a href="/auth/login">Sign In</a></li> @endguest
+        <!-- <li class="menu-item hidden"><a href="https://forum.codeigniter.com/" target="_blank">Community</a></li>
+        <li class="menu-item hidden"><a
+                href="https://codeigniter.com/contribute" target="_blank">Contribute</a>
+        </li> -->
     </ul>
 </div>
 
 </header>
-        <h1>Product Details</h1>
-      
-    <div class="product-container product-details">
-        <div class="product-image">
-            <img src="{{$product->image}}" alt="{{$product->name}}">
+    <h1>Checkout</h1>
+    
+        <div class="checkout-form">
+            <input type="text" value="{{$userDetails->name}}" disabled>
+            <input type="email" value="{{$userDetails->email}}" disabled>
+            <input type="text" placeholder="{{$userDetails->address}}" disabled>
         </div>
-        <div class="product-content">
-            <div class="product-title">{{$product->name}}</div>
-            <div class="product-description">
-            {{$product->description}}
-            </div>
-            <div class="product-price">£{{$product->price}}</div>
-            <!-- <button>Add to Cart</button> -->
 
-            <div class="add-cart">
-                        <form action="/store/cart/add" method="post">
-                        @csrf
-                            <input type="number" class="buyfield" name="quantity" value="1" min="1"/>
-                            <input type="hidden" class="buyfield" name="product_id" value="{{$product->id}}"/>
-                            <input type="submit" class="buysubmit" name="submit" value="Add to Cart"/>
-                        </form>				
-                    </div>
-        </div>
-    </div>
-    </div>
-</body>
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            
+
+        @php
+                        $i = 0;
+                        $total = 0;
+                    @endphp
+
+                    @foreach ($cart_contents as $cart_items)
+                    @php
+                            $i++;
+                            $total += ($cart_items['price'] * $cart_items['quantity']);
+                    @endphp
+            <tr>
+                <td>{{$cart_items['name']}}</td>
+                <td>£ {{$cart_items['price']}}</td>
+                <td>{{$cart_items['quantity']}}</td>
+                <td>£ {{$cart_items['price'] * $cart_items['quantity']}}</td>
+            </tr>
+            @endforeach
+            <tr>
+                <th> </th>
+                <th> </th>
+                <th> </th>
+                <th>£{{$total}}</th>
+            </tr>
+        </tbody>
+    </table>
+            <p>{{$message}}</p>
+            @if ($status != true ) <a href="/cart/checkout/order"><button class="checkout-button">Place Order</button></a> @endif
+
+
+                        </div>
+                    </body>
 </html>

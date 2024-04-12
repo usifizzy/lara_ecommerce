@@ -38,4 +38,4 @@ Route::get('/auth/register', function () {
 });
 Route::post('/auth/login', [AuthController::class, 'authenticate']);
 Route::post('/auth/register', [AuthController::class, 'register']);
-Route::post('/auth/signout', [AuthController::class, 'logout']);
+Route::get('/auth/signout', [AuthController::class, 'logout']);

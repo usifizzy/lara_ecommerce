@@ -5,7 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Product;
+use App\Models\User;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CartController extends Controller
 {
@@ -78,7 +83,67 @@ class CartController extends Controller
         return redirect()->action([CartController::class, 'show_cart']);
     }
 
-    public function place_order() : View {
+    public function checkout() 
+    {
+        $user = Auth::user();
+        $cart = session('cart', []);
+        if (count($cart) <= 0) {
+            session()->forget('cart');
+            return redirect()->action([StoreController::class, 'index']);
+        }
+
+        return view('app.checkout_view', [
+            'cart_contents' => session('cart', []),
+            'userDetails' => User::findOrFail($user->id),
+            'message' => '',
+            'status' => false
+        ]);
         
+    }
+
+    public function place_order() : View 
+    {
+
+        $user = Auth::user();
+        $status = false;
+        $message = '';
+        $cart_contents = session('cart', []);
+
+        $totalAmount = 0;
+
+        try {
+            foreach ($cart_contents as $item) {
+                $totalAmount += $item['price'] * $item['quantity'];
+            }
+            
+    
+            $orderId = Order::create(['order_no' => Str::random(15), 'amount' => $totalAmount, 'customer_id' => $user->id])->id;
+            foreach ($cart_contents as $cart_items){
+                OrderDetail::create([
+                    'order_id' => $orderId, 
+                    'product_name' => $cart_items['name'], 
+                    'price' => $cart_items['price'], 
+                    'quantity' => $cart_items['quantity'], 
+                    'amount' => $cart_items['price'] * $cart_items['quantity'], 
+                    'product_id' => $cart_items['product_id'],
+                ]);
+            }
+            $message = 'Order created successfully. Thank you';
+            $status = true;
+            session()->forget('cart');
+        } catch (\Throwable $th) {
+
+            throw $th;
+            $message = 'Unable to place order. Please try later';
+        } 
+
+
+
+        return view('app.checkout_view', [
+            'cart_contents' => $cart_contents,
+            'userDetails' => User::findOrFail($user->id),
+            'message' => $message,
+            'status' => $status
+        ]);
     }
 }

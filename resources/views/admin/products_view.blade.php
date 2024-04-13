@@ -115,7 +115,7 @@
             <li><a href="/auth/signout">Sign Out</a></li>
             <br>
             <br>
-            <li><a href="/">Store</a></li>
+            <li><a href="/store">Store</a></li>
         </ul>
     </div>
 
@@ -123,7 +123,7 @@
         
     <h2>Product List</h2>
     <br>
-    <a href="/products/add"><button>Add New Product</button></a>
+    <a href="/admin/products/add"><button>Add New Product</button></a>
     <table>
         <thead>
             <tr>
@@ -144,7 +144,7 @@
                 <td>{{$single_products->price}}</td>
                 <td>{{$single_products->category}}</td>
                 <td>{{$single_products->description}}</td>
-                <td><img src="{{$single_products->image }}" alt="{{$single_products->name}}" class="product-image" style="width:250px;height:250px"></td>
+                <td><img src="{{asset($single_products->image)}}" alt="{{$single_products->name}}" class="product-image" style="width:250px;height:250px"></td>
                 <td> </td>
             </tr>
             @endforeach

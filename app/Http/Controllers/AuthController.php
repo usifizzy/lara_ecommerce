@@ -108,10 +108,14 @@ class AuthController extends Controller
         } catch (\Throwable $th) {
             throw $th;
 
-            // $data['error_msg'] = 'Email of Phone already registered.';
+            $data['error_msg'] = 'Email of Phone already registered.';
             // return redirect('auth/register')
             //             ->withErrors($data)
             //             ->withInput();
+
+            return redirect()->back()
+                        ->withErrors($data)
+                        ->withInput();
         }
     }
 }

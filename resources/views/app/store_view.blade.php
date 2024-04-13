@@ -222,7 +222,7 @@
     <div class="product-grid">
      @foreach ($products as $product) 
         <div class="product-item">
-            <a href="{{'store/product/'.$product->id}}"><img class="product-image" style="width:250px;height:250px" src="{{$product->image}}" alt="{{$product->name}}" /></a>
+            <a href="{{'store/product/'.$product->id}}"><img class="product-image" style="width:250px;height:250px" src="{{asset($product->image)}}" alt="{{$product->name}}" /></a>
             <div class="product-title">{{$product->name}}</div>
             <div>{{$product->description}}</div>
             <div class="product-price">£<span class="price">{{$product->price}} </span></div>

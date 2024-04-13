@@ -32,7 +32,7 @@ Route::get('/admin/customers', [AdminController::class, 'customers'])->middlewar
 Route::get('/admin/orders', [AdminController::class, 'orders'])->middleware(AdminMiddleware::class);
 Route::get('/admin/order/details/{order_id}', [AdminController::class, 'order_details'])->middleware(AdminMiddleware::class);
 Route::get('/admin/products/add', function () {
-    return view('auth.login_view');
+    return view('admin.new_product_view');
 })->middleware(AdminMiddleware::class);
 
 

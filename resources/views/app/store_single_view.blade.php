@@ -200,7 +200,7 @@
       
     <div class="product-container product-details">
         <div class="product-image">
-            <img src="{{$product->image}}" alt="{{$product->name}}">
+            <img src="{{asset($product->image)}}" alt="{{$product->name}}">
         </div>
         <div class="product-content">
             <div class="product-title">{{$product->name}}</div>

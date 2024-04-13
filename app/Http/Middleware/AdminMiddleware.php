@@ -17,7 +17,6 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
 
-        // $user = Auth::user();
         // Check if the authenticated user has the admin role
         if (!auth()->user() || auth()->user()->role != 'Admin') {
             // User is not authorized, handle accordingly

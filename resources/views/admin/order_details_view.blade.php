@@ -79,7 +79,7 @@
             <li><a href="/auth/signout">Sign Out</a></li>
             <br>
             <br>
-            <li><a href="/">Store</a></li>
+            <li><a href="/store">Store</a></li>
         </ul>
     </div>
 

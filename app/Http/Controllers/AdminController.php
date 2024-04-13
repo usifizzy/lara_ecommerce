@@ -16,7 +16,7 @@ class AdminController extends Controller
     public function products(): View
     {
         return view('admin.products_view', [
-            'products' => Product::all(),
+            'products' => Product::paginate(10),
         ]);
     }
 
@@ -31,7 +31,7 @@ class AdminController extends Controller
     {
         return view('admin.orders_view', [
             // 'all_orders' => Order::all(),
-            'all_orders' => Order::all(),
+            'all_orders' => Order::paginate(10),
         ]);
     }
 

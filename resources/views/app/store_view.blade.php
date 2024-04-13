@@ -181,6 +181,11 @@
             background-color: #007bff;
             color: #fff;
         }
+        svg {
+            display: none;
+        }
+
+        
 
     </style>
 </head>
@@ -226,7 +231,7 @@
     @endforeach
     </div>
     <div>
-    <div class="pagination"> pagination </div>
+    <div class="pagination"> {{ $products->links() }} </div>
 </div>
 
             </div>

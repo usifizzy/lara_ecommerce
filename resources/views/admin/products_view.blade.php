@@ -99,6 +99,10 @@
             background-color: #007bff;
             color: #fff;
         }
+
+        svg {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -146,7 +150,7 @@
             @endforeach
         </tbody>
     </table>
-    <div class="pagination">pagination </div>
+    <div class="pagination">  {{ $products->links() }}  </div>
     </div>
 </body>
 </html>

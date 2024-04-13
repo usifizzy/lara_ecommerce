@@ -14,7 +14,7 @@ class StoreController extends Controller
     {
 
         return view('app.store_view', [
-            'products' => Product::all(),
+            'products' => Product::paginate(9),
             'hasCart' => false,
             'isUserLoggedIn' => false
         ]);

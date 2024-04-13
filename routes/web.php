@@ -5,6 +5,7 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Middleware\AdminMiddleware;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,10 +25,16 @@ Route::get('/cart/checkout', [CartController::class, 'checkout']);
 Route::get('/cart/checkout/order', [CartController::class, 'place_order']);
 
 
-Route::get('/admin/products', [AdminController::class, 'products']);
-Route::get('/admin/customers', [AdminController::class, 'customers']);
-Route::get('/admin/orders', [AdminController::class, 'orders']);
-Route::get('/admin/order/details/{order_id}', [AdminController::class, 'order_details']);
+Route::post('/admin/products/add', [AdminController::class, 'new_product'])->middleware(AdminMiddleware::class);
+Route::get('/admin/products', [AdminController::class, 'products'])->middleware(AdminMiddleware::class);
+Route::get('/admin/products', [AdminController::class, 'products'])->middleware(AdminMiddleware::class);
+Route::get('/admin/customers', [AdminController::class, 'customers'])->middleware(AdminMiddleware::class);
+Route::get('/admin/orders', [AdminController::class, 'orders'])->middleware(AdminMiddleware::class);
+Route::get('/admin/order/details/{order_id}', [AdminController::class, 'order_details'])->middleware(AdminMiddleware::class);
+Route::get('/admin/products/add', function () {
+    return view('auth.login_view');
+})->middleware(AdminMiddleware::class);
+
 
 
 Route::get('/auth/login', function () {

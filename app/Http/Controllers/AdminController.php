@@ -12,7 +12,6 @@ use Illuminate\View\View;
 class AdminController extends Controller
 {
     //
-
     public function products(): View
     {
         return view('admin.products_view', [
@@ -23,7 +22,7 @@ class AdminController extends Controller
     public function customers(): View
     {
         return view('admin.customers_view', [
-            'customers' => User::where('role', 'User')->get(),
+            'customers' => User::where('role', 'User')->paginate(10),
         ]);
     }
 

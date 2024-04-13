@@ -97,12 +97,13 @@
             </tr>
         </thead>
         <tbody>
-        <?php 
-        $count = 1;
-        $total = 0;
-        @foreach ($get_all_orders as $single_products) 
+        @php 
+            $count = 1;
+            $total = 0;
+        @endphp
+        @foreach ($orders_products_list as $single_products) 
             @php($total += ($single_products->price * $single_products->quantity))
-            ?>
+        
             <tr>
                 <td>{{$loop->iteration}}</td>
                 <td>{{$single_products->product_name}}</td>

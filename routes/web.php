@@ -27,7 +27,7 @@ Route::get('/cart/checkout/order', [CartController::class, 'place_order']);
 Route::get('/admin/products', [AdminController::class, 'products']);
 Route::get('/admin/customers', [AdminController::class, 'customers']);
 Route::get('/admin/orders', [AdminController::class, 'orders']);
-Route::get('/admin/order/details', [AdminController::class, 'order_details']);
+Route::get('/admin/order/details/{order_id}', [AdminController::class, 'order_details']);
 
 
 Route::get('/auth/login', function () {

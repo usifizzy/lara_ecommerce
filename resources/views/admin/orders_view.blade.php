@@ -140,8 +140,8 @@
                 <td>{{$loop->iteration}}</td>
                 <td>{{$single_products->order_no}}</td>
                 <td>{{$single_products->amount}}</td>
-                <td>{{$single_products->email}}</td>
-                <td>{{$single_products->name}}</td>
+                <td>{{$single_products->customer->email}}</td>
+                <td>{{$single_products->customer->name}}</td>
 
                 <td>{{$single_products->status}}</td>
                 <td><a href="order/details/{{$single_products->id}}"><span>Details</span></a> </td>

@@ -63,7 +63,7 @@
             <input type="password" id="password" name="password" required>
             <input type="submit" value="Login" name="loginSubmit">
         </form>
-        <a href="/register"><span>Don't have an account? Register</span></a>
+        <a href="/auth/register"><span>Don't have an account? Register</span></a>
     </div>
 </body>
 </html>

@@ -23,10 +23,10 @@ class AuthController extends Controller
  
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
- 
-            // if (Auth::guard('admin')->attempt($credentials)) {
-            //     return redirect()->intended('dashboard');
-            // }
+            $user = Auth::user();
+            if($user->role === 'Admin'){
+                return redirect()->intended('admin'); 
+            }
             return redirect()->intended('store');
         }
  

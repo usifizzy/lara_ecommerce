@@ -18,9 +18,6 @@ return new class extends Migration
             $table->double('price', 38, 2)->default(0);
             $table->double('quantity', 38, 2)->default(0);
             $table->double('amount', 38, 2)->default(0);
-
-            $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products');
             
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders');

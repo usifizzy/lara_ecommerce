@@ -108,6 +108,9 @@
 <body>
     <div class="sidebar">
         <ul>
+            <li>Hi, {{ auth()->user()->name }}</li>
+            <br>
+            <br>
             <li><a href="/admin">Dashboard</a></li>
             <li>Products</li>
             <li><a href="/admin/orders">Orders</a></li>
@@ -133,7 +136,7 @@
                 <th>Category</th>
                 <th>Description</th>
                 <th>Image</th>
-                <th> </th>
+                <th>Action </th>
             </tr>
         </thead>
         <tbody>
@@ -145,7 +148,7 @@
                 <td>{{$single_products->category}}</td>
                 <td>{{$single_products->description}}</td>
                 <td><img src="{{asset($single_products->image)}}" alt="{{$single_products->name}}" class="product-image" style="width:250px;height:250px"></td>
-                <td> </td>
+                <td><a href="{{'products/update/'.$single_products->id}}">Edit</a> | <a href="{{'products/delete/'.$single_products->id}}">Delete</a> </td>
             </tr>
             @endforeach
         </tbody>

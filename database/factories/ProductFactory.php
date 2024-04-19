@@ -16,14 +16,41 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
-        return [
+        // return [
+        //     'name' => fake()->word(),
+        //     'price' => fake()->randomFloat(2),
+        //     // 'price' => fake()->numberBetween($min = 1500, $max = 6000),
+        //     'category' => fake()->word(),
+        //     'description' => fake()->paragraph(),
+        //     'image' => fake()->imageUrl($width = 200, $height = 200),
+        // ];
+
+
+        return [[
             'name' => fake()->word(),
             'price' => fake()->randomFloat(2),
             // 'price' => fake()->numberBetween($min = 1500, $max = 6000),
             'category' => fake()->word(),
             'description' => fake()->paragraph(),
             'image' => fake()->imageUrl($width = 200, $height = 200),
-        ];
+        ],
+        [
+            'name' => fake()->word(),
+            'price' => fake()->randomFloat(2),
+            // 'price' => fake()->numberBetween($min = 1500, $max = 6000),
+            'category' => fake()->word(),
+            'description' => fake()->paragraph(),
+            'image' => fake()->imageUrl($width = 200, $height = 200),
+        ],
+        [
+            'name' => fake()->word(),
+            'price' => fake()->randomFloat(2),
+            // 'price' => fake()->numberBetween($min = 1500, $max = 6000),
+            'category' => fake()->word(),
+            'description' => fake()->paragraph(),
+            'image' => fake()->imageUrl($width = 200, $height = 200),
+        ],
+    ];
     }
 } 
 

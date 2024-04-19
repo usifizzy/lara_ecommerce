@@ -26,9 +26,12 @@ Route::get('/cart/checkout', [CartController::class, 'checkout']);
 Route::get('/cart/checkout/order', [CartController::class, 'place_order']);
 
 
+Route::get('/admin', [AdminController::class, 'index'])->middleware(AdminMiddleware::class);
 Route::post('/admin/products/add', [AdminController::class, 'new_product'])->middleware(AdminMiddleware::class);
 Route::get('/admin/products', [AdminController::class, 'products'])->middleware(AdminMiddleware::class);
-Route::get('/admin/products', [AdminController::class, 'products'])->middleware(AdminMiddleware::class);
+Route::get('/admin/products/delete/{id}', [AdminController::class, 'product_delete'])->middleware(AdminMiddleware::class);
+Route::get('/admin/products/update/{id}', [AdminController::class, 'product_edit'])->middleware(AdminMiddleware::class);
+Route::post('/admin/products/update/{id}', [AdminController::class, 'product_update'])->middleware(AdminMiddleware::class);
 Route::get('/admin/customers', [AdminController::class, 'customers'])->middleware(AdminMiddleware::class);
 Route::get('/admin/orders', [AdminController::class, 'orders'])->middleware(AdminMiddleware::class);
 Route::get('/admin/order/details/{order_id}', [AdminController::class, 'order_details'])->middleware(AdminMiddleware::class);

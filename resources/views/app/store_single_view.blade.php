@@ -223,7 +223,18 @@
             <div class="product-price">£{{$product->price}}</div>
             <!-- <button>Add to Cart</button> -->
 
-            <div class="add-cart">
+            <!-- <div class="add-cart">
+                        <form action="/store/cart/add" method="post">
+                        @csrf
+                            <input type="number" class="buyfield" name="quantity" value="1" min="1"/>
+                            <input type="hidden" class="buyfield" name="product_id" value="{{$product->id}}"/>
+                            <input type="submit" class="buysubmit" name="submit" value="Add to Cart"/>
+                        </form>				
+                    </div> -->
+                @auth
+                    @if(auth()->user()->role != 'Admin')
+                        
+                    <div class="add-cart">
                         <form action="/store/cart/add" method="post">
                         @csrf
                             <input type="number" class="buyfield" name="quantity" value="1" min="1"/>
@@ -231,6 +242,18 @@
                             <input type="submit" class="buysubmit" name="submit" value="Add to Cart"/>
                         </form>				
                     </div>
+                    @endif
+                @endauth
+                @guest
+                    <div class="add-cart">
+                        <form action="/store/cart/add" method="post">
+                        @csrf
+                            <input type="number" class="buyfield" name="quantity" value="1" min="1"/>
+                            <input type="hidden" class="buyfield" name="product_id" value="{{$product->id}}"/>
+                            <input type="submit" class="buysubmit" name="submit" value="Add to Cart"/>
+                        </form>				
+                    </div>
+                @endguest
         </div>
     </div>
     </div>

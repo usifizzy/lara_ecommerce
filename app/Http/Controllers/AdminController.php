@@ -123,7 +123,7 @@ class AdminController extends Controller
 
     public function product_update($id, Request $request)
     {
-            var_dump($request->all());
+            // var_dump($request->all());
        
         $validator = Validator::make($request->all(), [
             'description' => 'required|max:5000|min:2',
@@ -171,10 +171,10 @@ class AdminController extends Controller
         } catch (\Throwable $th) {
             throw $th;
 
-            // $data['error_msg'] = 'Error updating product';
-            // return redirect->back()
-            //             ->withErrors($data)
-            //             ->withInput();
+            $data['error_msg'] = 'Error updating product';
+            return redirect->back()
+                        ->withErrors($data)
+                        ->withInput();
         }
     }
 

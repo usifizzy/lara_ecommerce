@@ -8,7 +8,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Middleware\AdminMiddleware;
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return redirect('store');
 });
 
 // Route::get('/user/{id}', [StoreController::class, 'index']);

@@ -24,10 +24,10 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
             'role' => 'Admin',
             'address' => fake()->streetAddress(),
-            'phone' => fake()->phone(),
+            'phone' => fake()->randomNumber(9),
         ]);
         User::factory(2)->create();
-        Product::factory(20)->create();
+        Product::factory(10)->create();
 
     }
 }

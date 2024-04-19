@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Grid List</title>
+    <title>Products</title>
     <style>
         
         * {
@@ -224,7 +224,7 @@
         <div class="product-item">
             <a href="{{'store/product/'.$product->id}}"><img class="product-image" style="width:250px;height:250px" src="{{asset($product->image)}}" alt="{{$product->name}}" /></a>
             <div class="product-title">{{$product->name}}</div>
-            <div>{{$product->description}}</div>
+            {{-- <div>{{$product->description}}</div> --}}
             <div class="product-price">£<span class="price">{{$product->price}} </span></div>
             <div class="button"><span><a href="{{'store/product/'.$product->id}}" class="details"><button>Details</button></a></span></div>
         </div>

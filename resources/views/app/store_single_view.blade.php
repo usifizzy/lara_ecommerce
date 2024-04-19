@@ -222,7 +222,6 @@
             </div>
             <div class="product-price">£{{$product->price}}</div>
             <!-- <button>Add to Cart</button> -->
-            @auth
 
             <!-- <div class="add-cart">
                         <form action="/store/cart/add" method="post">

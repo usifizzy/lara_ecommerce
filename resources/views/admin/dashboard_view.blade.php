@@ -1,6 +1,3 @@
-<div>
-    <!-- Because you are alive, everything is possible. - Thich Nhat Hanh -->
-</div>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +23,7 @@
             list-style-type: none;
             padding: 0;
         }
-        .sidebar ul li {
+        .sidebar ul li{
             padding: 10px 20px;
             color: #fff;
             cursor: pointer;
@@ -38,20 +35,48 @@
             margin-left: 250px;
             padding: 20px;
         }
-        h1 {
-            color: #333;
+        
+        .card-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
-        a{
+        .card {
+            flex: 0 1 calc(33.333% - 80px);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            /* background-color: #fff; */
+        }
+        .card h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
             color: #ffff; 
-            text-decoration: none;
+        }
+        .card p {
+            font-size: 16px;
+            /* color: #666; */
+            color: #ffff; 
+        }
+        .card .icon {
+            font-size: 40px;
+            float: left;
+            margin-right: 10px;
+        }
+        .success {
+            /* color: #28a745; */
+            background-color: #28a745;
+        }
+        .warning {
+            /* color: #ffc107; */
+            background-color: #ffc107;
+        }
+        .danger {
+            /* color: #ffc107; */
+            background-color: #dc3545;
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -70,42 +95,15 @@
         tr:hover {
             background-color: #ddd;
         }
-
-
-
-        /* Styles for pagination container */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
+        
+        h1 {
+            color: #333;
         }
-
-        /* Styles for pagination links */
-        .pagination a {
-            padding: 8px 16px;
-            margin: 0 4px;
-            color: #007bff; /* Link color */
+        a{
+            color: #ffff; 
             text-decoration: none;
-            border: 1px solid #007bff; /* Border color */
-            border-radius: 4px;
-            transition: background-color 0.3s;
         }
-
-        /* Hover effect for pagination links */
-        .pagination a:hover {
-            background-color: #007bff;
-            color: #fff; /* Text color on hover */
-        }
-
-        /* Active page style */
-        .pagination .active {
-            background-color: #007bff;
-            color: #fff;
-        }
-
-        svg {
-            display: none;
-        }
+        
     </style>
 </head>
 <body>
@@ -114,49 +112,80 @@
             <li>Hi, {{ auth()->user()->name }}</li>
             <br>
             <br>
-            <li><a href="/admin">Dashboard</a></li>
+            <li>Dashboard</li>
             <li><a href="/admin/products">Products</a></li>
-            <li>Orders</li>
+            <li><a href="/admin/orders">Orders</a></li>
             <li><a href="/admin/customers">Customers</a></li>
             <li><a href="/auth/signout">Sign Out</a></li>
             <br>
             <br>
-            <li><a href="/store">Store</a></li>
+            <li><a href="/">Store</a></li>
         </ul>
     </div>
 
     <div class="content">
+        <h1>Dashboard</h1>
         
-    <h2>Order List</h2>
+        <div class="card-container">
+            <div class="card success">
+                <div>
+                    <h2>Total Sales</h2>
+                    <p>£{{$totalOrderAmount}}</p>
+                </div>
+            </div>
+            <div class="card warning">
+                <div>
+                    <h2>Orders</h2>
+                    <p>{{$orderCount}}</p>
+                </div>
+            </div>
+            <div class="card danger">
+                <div>
+                    <h2>Customers</h2>
+                    <p>{{$customers}}</p>
+                </div>
+            </div>
+        </div>
+
+           
+    <h3>Last 5 Order</h3>
     
     <table>
         <thead>
             <tr>
-                <th>ID</th>
+                <th>Order Date</th>
                 <th>Order No</th>
                 <th>Amount(£)</th>
                 <th>Customer Email</th>
                 <th>Customer Name</th>
-                <th>Status</th>
                 <th> </th>
             </tr>
         </thead>
         <tbody>
-        @foreach ($all_orders as $single_products) 
+        @foreach ($last_orders as $single_products) 
             <tr>
-                <td>{{$loop->iteration}}</td>
+                <td>{{$single_products->created_at}}</td>
                 <td>{{$single_products->order_no}}</td>
                 <td>{{$single_products->amount}}</td>
                 <td>{{$single_products->customer->email}}</td>
                 <td>{{$single_products->customer->name}}</td>
 
-                <td>{{$single_products->status}}</td>
+                <!-- <td>{{$single_products->status}}</td> -->
                 <td><a href="order/details/{{$single_products->id}}"><span>Details</span></a> </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-    <div class="pagination">  {{ $all_orders->links() }}  </div>
     </div>
 </body>
 </html>
+
+<!-- 
+.container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        } -->

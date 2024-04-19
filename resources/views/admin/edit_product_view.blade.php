@@ -96,31 +96,27 @@
 
     <div class="content">
 
-    <form action="/admin/products/add"  method="post" enctype="multipart/form-data">
+    <form action="/admin/products/update/{{$edit_products_list->id}}"  method="post" enctype="multipart/form-data">
         @csrf
         <h2>Create Product</h2>
         <label for="name">Name:</label>
-        <input type="text" name="name" required>
+        <input type="text" name="name" value="{{$edit_products_list->name}}" required>
         
         <label for="price">Price:</label>
-        <input type="number" name="price" min="0" step="0.01" required>
+        <input type="number" name="price" min="0" step="0.01" value="{{$edit_products_list->price}}" required>
         
         <label for="category">Category:</label>
-        <select name="category" required>
-            <option value="">Select Category</option>
-            <option value="Electronics">Electronics</option>
-            <option value="Clothing">Clothing</option>
-            <option value="Books">Books</option>
-            <!-- Add more options as needed -->
-        </select>
+        <input type="text" name="category" accept="image/*"  value="{{$edit_products_list->category}}" required disabled>
+    
         
         <label for="description">Description:</label>
-        <textarea name="description" rows="4" required></textarea>
+        <textarea name="description" rows="4" required>{{$edit_products_list->description}}</textarea>
         
-        <label for="image">Image:</label>
-        <input type="file" name="image" accept="image/*"  required>
+        <label for="image">Change Image:</label>
+        <input type="file" name="image" accept="image/*"  value="{{$edit_products_list->image}}">
+        <img src="{{asset($edit_products_list->image)}}" alt="{{$edit_products_list->name}}" class="product-image" style="width:250px;height:250px">
         
-        <input type="submit" value="Create Product">
+        <input type="submit" value="Update Product">
     </form>
     </div>
 </body>

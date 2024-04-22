@@ -146,7 +146,7 @@
             <tr>
                 <td>{{$loop->iteration}}</td>
                 <td>{{$single_products->order_no}}</td>
-                <td>{{$single_products->amount}}</td>
+                <td>{{number_format($single_products->amount, 2)}}</td>
                 <td>{{$single_products->customer->email}}</td>
                 <td>{{$single_products->customer->name}}</td>
 

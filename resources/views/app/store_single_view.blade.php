@@ -197,6 +197,11 @@
         <li class="menu-toggle">
             <button id="menuToggle">&#9776;</button>
         </li>
+                @auth
+                    @if(auth()->user()->role == 'Admin')
+                    <li class="menu-item hidden"><a href="/admin">Admin</a></li>
+                    @endif
+                @endauth
         <li class="menu-item hidden"><a href="/store">Home</a></li>
         @session('cart') 
         @if(isset($value))
@@ -220,7 +225,7 @@
             <div class="product-description">
             {{$product->description}}
             </div>
-            <div class="product-price">£{{$product->price}}</div>
+            <div class="product-price">£{{number_format($product->price, 2)}}</div>
             <!-- <button>Add to Cart</button> -->
 
             <!-- <div class="add-cart">
@@ -244,7 +249,7 @@
                     </div>
                     @endif
                 @endauth
-                @guest
+                <!-- @guest
                     <div class="add-cart">
                         <form action="/store/cart/add" method="post">
                         @csrf
@@ -253,7 +258,7 @@
                             <input type="submit" class="buysubmit" name="submit" value="Add to Cart"/>
                         </form>				
                     </div>
-                @endguest
+                @endguest -->
         </div>
     </div>
     </div>

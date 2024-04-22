@@ -229,16 +229,16 @@
                     @endphp
             <tr>
                 <td>{{$cart_items['name']}}</td>
-                <td>£ {{$cart_items['price']}}</td>
-                <td>{{$cart_items['quantity']}}</td>
-                <td>£ {{$cart_items['price'] * $cart_items['quantity']}}</td>
+                <td>£ {{number_format($cart_items['price'], 2)}}</td>
+                <td>{{number_format($cart_items['quantity'])}}</td>
+                <td>£ {{number_format($cart_items['price'] * $cart_items['quantity'], 2)}}</td>
             </tr>
             @endforeach
             <tr>
                 <th> </th>
                 <th> </th>
                 <th> </th>
-                <th>£{{$total}}</th>
+                <th>£{{number_format($total, 2)}}</th>
             </tr>
         </tbody>
     </table>

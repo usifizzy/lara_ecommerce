@@ -144,7 +144,7 @@
             <tr>
                 <td>{{$loop->iteration}}</td>
                 <td>{{$single_products->name}}</td>
-                <td>{{$single_products->price}}</td>
+                <td>{{number_format($single_products->price, 2)}}</td>
                 <td>{{$single_products->category}}</td>
                 <td>{{$single_products->description}}</td>
                 <td><img src="{{asset($single_products->image)}}" alt="{{$single_products->name}}" class="product-image" style="width:250px;height:250px"></td>

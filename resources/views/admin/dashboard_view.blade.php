@@ -119,7 +119,7 @@
             <li><a href="/auth/signout">Sign Out</a></li>
             <br>
             <br>
-            <li><a href="/">Store</a></li>
+            <li><a href="/store">Store</a></li>
         </ul>
     </div>
 
@@ -130,19 +130,19 @@
             <div class="card success">
                 <div>
                     <h2>Total Sales</h2>
-                    <p>£{{$totalOrderAmount}}</p>
+                    <p>£{{number_format($totalOrderAmount, 2)}}</p>
                 </div>
             </div>
             <div class="card warning">
                 <div>
                     <h2>Orders</h2>
-                    <p>{{$orderCount}}</p>
+                    <p>{{number_format($orderCount)}}</p>
                 </div>
             </div>
             <div class="card danger">
                 <div>
                     <h2>Customers</h2>
-                    <p>{{$customers}}</p>
+                    <p>{{number_format($customers)}}</p>
                 </div>
             </div>
         </div>
@@ -166,12 +166,12 @@
             <tr>
                 <td>{{$single_products->created_at}}</td>
                 <td>{{$single_products->order_no}}</td>
-                <td>{{$single_products->amount}}</td>
+                <td>{{number_format($single_products->amount, 2)}}</td>
                 <td>{{$single_products->customer->email}}</td>
                 <td>{{$single_products->customer->name}}</td>
 
                 <!-- <td>{{$single_products->status}}</td> -->
-                <td><a href="order/details/{{$single_products->id}}"><span>Details</span></a> </td>
+                <td><a href="/admin/order/details/{{$single_products->id}}"><span>Details</span></a> </td>
             </tr>
             @endforeach
         </tbody>

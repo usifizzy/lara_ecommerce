@@ -98,7 +98,7 @@
 
     <form action="/admin/products/update/{{$edit_products_list->id}}"  method="post" enctype="multipart/form-data">
         @csrf
-        <h2>Create Product</h2>
+        <h2>Edit Product</h2>
         <label for="name">Name:</label>
         <input type="text" name="name" value="{{$edit_products_list->name}}" required>
         

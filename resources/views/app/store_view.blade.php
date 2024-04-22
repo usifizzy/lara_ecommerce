@@ -218,6 +218,11 @@
         <li class="menu-toggle">
             <button id="menuToggle">&#9776;</button>
         </li>
+                @auth
+                    @if(auth()->user()->role == 'Admin')
+                    <li class="menu-item hidden"><a href="/admin">Admin</a></li>
+                    @endif
+                @endauth
         <li class="menu-item hidden"><a href="/store">Home</a></li>
         @session('cart') 
         @if(isset($value))
@@ -238,7 +243,7 @@
             <a href="{{'store/product/'.$product->id}}"><img class="product-image" style="width:250px;height:250px" src="{{asset($product->image)}}" alt="{{$product->name}}" /></a>
             <div class="product-title">{{$product->name}}</div>
             <div>{{$product->description}}</div>
-            <div class="product-price">£<span class="price">{{$product->price}} </span></div>
+            <div class="product-price">£<span class="price">{{number_format($product->price, 2)}} </span></div>
             <div class="button"><span><a href="{{'store/product/'.$product->id}}" class="details"><button>Details</button></a></span></div>
         </div>
     @endforeach

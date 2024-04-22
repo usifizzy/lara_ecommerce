@@ -207,9 +207,9 @@
                     @endphp
             <tr>
                 <td>{{$cart_items['name']}}</td>
-                <td>£ {{$cart_items['price']}}</td>
-                <td>{{$cart_items['quantity']}}</td>
-                <td>£ {{$cart_items['price'] * $cart_items['quantity']}}</td>
+                <td>£ {{number_format($cart_items['price'], 2)}}</td>
+                <td>{{number_format($cart_items['quantity'])}}</td>
+                <td>£ {{number_format($cart_items['price'] * $cart_items['quantity'], 2)}}</td>
                 <td><a href="store/cart/remove/{{$cart_items['product_id']}}"><button>Remove</button></a></td>
             </tr>
             @endforeach
@@ -217,7 +217,7 @@
                 <th> </th>
                 <th> </th>
                 <th> </th>
-                <th>£ {{$total}}</th>
+                <th>£ {{number_format($total, 2)}}</th>
                 <th> </th>
             </tr>
         </tbody>

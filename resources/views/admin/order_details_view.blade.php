@@ -94,9 +94,9 @@
             <tr>
                 <th>ID</th>
                 <th>Product</th>
-                <th>Price(NGN)</th>
+                <th>Price(£)</th>
                 <th>Quantity</th>
-                <th>Amount(NGN)</th>
+                <th>Amount(£)</th>
             </tr>
         </thead>
         <tbody>
@@ -110,9 +110,9 @@
             <tr>
                 <td>{{$loop->iteration}}</td>
                 <td>{{$single_products->product_name}}</td>
-                <td>{{$single_products->price}}</td>
-                <td>{{$single_products->quantity}}</td>
-                <td>{{$single_products->price * $single_products->quantity}}</td>
+                <td>{{number_format($single_products->price, 2)}}</td>
+                <td>{{number_format($single_products->quantity)}}</td>
+                <td>{{number_format($single_products->price * $single_products->quantity, 2)}}</td>
             </tr>
             @endforeach
 
@@ -121,7 +121,7 @@
                 <th> </th>
                 <th> </th>
                 <th> </th>
-                <th>£ {{$total}}</th>
+                <th>£ {{number_format($total, 2)}}</th>
             </tr>
         </tbody>
     </table>

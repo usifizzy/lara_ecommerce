@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->string('order_no', 128);
             $table->double('amount', 38, 2)->default(0);
-            $table->string('category', 64);
+            // $table->string('category', 64);
             $table->enum('status', [ 'pending', 'paid', 'delivered'])->default('pending');
             
             $table->unsignedBigInteger('customer_id');

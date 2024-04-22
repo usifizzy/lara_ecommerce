@@ -52,4 +52,31 @@ class ProductFactory extends Factory
         ],
     ];
     }
-}
+} 
+
+// [
+// [
+//     'name' => fake()->word(),
+//     'price' => fake()->randomFloat(2),
+//     // 'price' => fake()->numberBetween($min = 1500, $max = 6000),
+//     'category' => fake()->word(),
+//     'description' => fake()->paragraph(),
+//     'image' => fake()->imageUrl($width = 200, $height = 200),
+// ],
+// [
+//     'name' => 'Samsung'
+//     'price' => fake()->randomFloat(2),
+//     // 'price' => fake()->numberBetween($min = 1500, $max = 6000),
+//     'category' => fake()->word(),
+//     'description' => fake()->paragraph(),
+//     'image' => fake()->imageUrl($width = 200, $height = 200),
+// ],
+// [
+//     'name' => 'iphone 15',
+//     'price' => 1000,
+//     // 'price' => fake()->numberBetween($min = 1500, $max = 6000),
+//     'category' => 'phone',
+//     'description' => 'Apple Iphone 15',
+//     'image' => fake()->imageUrl($width = 200, $height = 200),
+// ],
+// ];
